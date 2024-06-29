@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 export class RegistroComponent {
   registrarUsuario: FormGroup;
 
+
   constructor(
     private fb: FormBuilder,
     private afAuth: AngularFireAuth,
