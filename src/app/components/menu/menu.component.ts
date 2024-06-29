@@ -12,19 +12,19 @@ export class MenuComponent implements OnInit {
   constructor(private _prod: ProductsService) {}
 
   ngOnInit(): void {
-
+    this.getProducts()
   }
 
-  // getProducts() {
-  //   this._prod.getProducts().subscribe((data) => {
-  //     this.products = [];
-  //     data.forEach((element: any) => {
-  //       this.products.push({
-  //         id: element.payload.doc.id,
-  //         ...element.payload.doc.data(),
-  //       });
-  //     });
-  //     console.log(this.products)
-  //   });
-  // }
+  getProducts() {
+    this._prod.getProducts().subscribe((data) => {
+      this.products = [];
+      data.forEach((element: any) => {
+        this.products.push({
+          id: element.payload.doc.id,
+          ...element.payload.doc.data(),
+        });
+      });
+      console.log(this.products)
+    });
+  }
 }
