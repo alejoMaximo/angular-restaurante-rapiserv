@@ -1,5 +1,5 @@
 <div>
-  <div  style="margin-top: 8%">
+  <div>
     <form class="login-form" (ngSubmit)="registrar()" #loginForm="ngForm" [formGroup]="registrarUsuario">
       <h2 class="form-title">REGISTRARSE</h2>
       <div class="form-group">
@@ -7,9 +7,10 @@
         <input
           type="text"
           name="text"
-          placeholder="nombre"
+          placeholder="dijite su nombre"
           formControlName="text"
         />
+
         <label for="email">Correo electrónico</label>
         <input
           type="email"
@@ -60,7 +61,7 @@
           formControlName="repetirPassword"
         />
       </div>
-      <div style="display: flex; gap: 2px">
+      <div>
         <button
           style="background-color: blue"
           type="button"
