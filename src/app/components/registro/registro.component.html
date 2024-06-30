@@ -3,6 +3,13 @@
     <form class="login-form" (ngSubmit)="registrar()" #loginForm="ngForm" [formGroup]="registrarUsuario">
       <h2 class="form-title">REGISTRARSE</h2>
       <div class="form-group">
+        <label for="email">Nombre</label>
+        <input
+          type="text"
+          name="text"
+          placeholder="nombre"
+          formControlName="text"
+        />
         <label for="email">Correo electrónico</label>
         <input
           type="email"
