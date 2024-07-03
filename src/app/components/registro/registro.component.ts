@@ -18,12 +18,14 @@ export class RegistroComponent {
     private router: Router
   ) {
     this.registrarUsuario = this.fb.group({
+      username: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       repetirPassword: ['', Validators.required],
     });
   }
   registrar() {
+    const username = this.registrarUsuario.value.username;
     const email = this.registrarUsuario.value.email;
     const password = this.registrarUsuario.value.password;
     const repetirPassword = this.registrarUsuario.value.repetirPassword;
@@ -35,7 +37,12 @@ export class RegistroComponent {
     this.afAuth
       .createUserWithEmailAndPassword(email, password)
       .then((user) => {
+        return user.user?.updateProfile({
+          displayName: username
+        })
+      }).then(()=>{
         this.router.navigate(['/login']);
+        console.log('usuario registrado')
       })
       .catch((error) => {
         console.log(error);

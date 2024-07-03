@@ -9,45 +9,9 @@
     <title>Document</title>
  </head>
  <body>
-    <h1>hola {{saludar}}</h1>
 
-
-    <h1>Comidas Rapidas Rapiserv </h1>
-
-
-    <header>
-        <div class="container">
-            <nav class="nav">
-                <div class="menu-toggle">
-                    <i class="fas fa-bars"></i>
-                    <i class="fas fa-times"></i>
-                </div>
-                <a href="#" class="logo">LOGO</a>
-                <ul class="nav-list">
-                    <li class="nav-item">
-                        <a href="#" class="nav-link active">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a routerLink="/menu" class="nav-link ">ver menu</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">Reservaciones</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">Noticias</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">Tienda</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link ">Contacto</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-
-
+<h1>hola {{saludar || 'invitado'}}</h1>
+  <app-navbar></app-navbar>
     <section class="hero" id="hero">
         <div class="container">
             <h2 class="h2-sub">

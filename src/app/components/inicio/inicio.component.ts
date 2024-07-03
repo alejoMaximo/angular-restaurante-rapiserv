@@ -14,7 +14,7 @@ export class InicioComponent implements OnInit {
 
   ngOnInit(): void {
     this.afAuth.currentUser.then((data) => {
-      this.saludar = data?.email
+      this.saludar = data?.displayName;
       console.log(data);
     });
   }
