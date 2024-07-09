@@ -2,46 +2,65 @@
 
 <h1>productos</h1>
 
-  <div class="image">
-      <img src="../../../assets/imagenes/imagen.png" alt="">
+<div class="image">
+  <img src="../../../assets/imagenes/imagen.png" alt="" />
+</div>
+
+<button routerLink="/inicio" class="volver">volver</button>
+
+<div></div>
+
+<section class="contenedor">
+  <!-- Contenedor de elementos -->
+  <div *ngFor="let p of products" class="contenedor-items">
+    <div class="item">
+      <span class="titulo-item">{{ p.producto || "sin nombre" }}</span>
+      <img [src]="p.imagen" alt="img" class="img-item" />
+      <span class="precio-item">${{ p.precio }}</span>
+      <button (click)="agregar(p.id)" class="boton-item">
+        Agregar al Carrito
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- Carrito de Compras -->
+<div style="top: 128%; left: 29%" *ngIf="mostrar" class="carrito" id="carrito">
+  <div class="header-carrito">
+    <h2>Tu Carrito</h2>
+    <span style="cursor: pointer;" (click)="cerrar()">X</span>
   </div>
 
-  <button routerLink="/inicio" class="volver">volver</button>
+  <div style="background-color: aquamarine;" *ngFor="let pd of producto">
+    <img width="100" [src]="pd.imagen" alt="">
+    <div>
+      <span>Nombre: </span>
+      <span>{{pd.producto}}</span>
+    </div>
+    <div>
+      <span>Precio: </span>
+      <span>{{pd.precio}}</span>
+    </div>
 
-  <div>
-
+    <button [disabled]="habilitar" (click)="reducir()" style="border-radius: 50%;
+    padding: 9px;">-</button>
+    <span>{{count}}</span>
+    <button (click)="aumentar()" style="border-radius: 50%;
+    padding: 9px;">+</button>
+    <div>
+      <span>Subtotal: </span>
+      <span>{{subtotal}}</span>
+    </div>
   </div>
 
-  <section class="contenedor">
-      <!-- Contenedor de elementos -->
-      <div *ngFor="let p of products" class="contenedor-items">
-          <div class="item">
-              <span class="titulo-item">{{p.producto || 'sin nombre'}}</span>
-              <img [src]="p.imagen" alt="img" class="img-item">
-              <span class="precio-item">${{p.precio}}</span>
-              <button (click)="agregar(p.id)" class="boton-item">Agregar al Carrito</button>
-          </div>
-      </div>
-  </section>
-
-        <!-- Carrito de Compras -->
-      <div style="top: 128%;
-    left: 29%;" *ngIf="mostrar" class="carrito" id="carrito">
-          <div class="header-carrito">
-              <h2>Tu Carrito</h2>
-          </div>
-
-
-          <div class="carrito-items">
-
-          </div>
-          <div class="carrito-total">
-              <div class="fila">
-                  <strong>Tu Total</strong>
-                  <span class="carrito-precio-total">
-                      $120.000,00
-                  </span>
-              </div>
-              <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
-          </div>
-      </div>
+  <div class="carrito-items"></div>
+  <div class="carrito-total">
+    <div class="fila">
+      <strong>Tu Total</strong>
+      <span class="carrito-precio-total"> $120.000,00 </span>
+    </div>
+    <button class="btn-pagar">
+      Pagar <i class="fa-solid fa-bag-shopping"></i>
+    </button>
+  </div>
+</div>

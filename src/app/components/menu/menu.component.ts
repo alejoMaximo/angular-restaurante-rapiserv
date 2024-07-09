@@ -10,6 +10,9 @@ export class MenuComponent implements OnInit {
   products: any[] = [];
   mostrar: boolean = false
   producto: any[] = []
+  count = 1
+  habilitar = true
+  subtotal = 0
 
   constructor(private _prod: ProductsService) {}
 
@@ -33,6 +36,21 @@ export class MenuComponent implements OnInit {
     this.mostrar = true
     const captura = this.products.find(pro => pro.id === id)
     this.producto.push(captura)
-    console.log(this.producto)
+    this.subtotal += captura.precio;
+  }
+  cerrar(){
+    this.mostrar = false
+  }
+  reducir(){
+    if (this.count > 1) {
+      this.count --
+      this.subtotal -= this.producto[0].precio;
+      this.habilitar = this.count === 1;
+    }
+  }
+  aumentar(){
+    this.count ++
+    this.subtotal += this.producto[0].precio;
+    this.habilitar = false
   }
 }
