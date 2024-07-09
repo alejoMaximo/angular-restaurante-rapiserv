@@ -8,6 +8,8 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class MenuComponent implements OnInit {
   products: any[] = [];
+  mostrar: boolean = false
+  producto: any[] = []
 
   constructor(private _prod: ProductsService) {}
 
@@ -26,5 +28,11 @@ export class MenuComponent implements OnInit {
       });
       console.log(this.products)
     });
+  }
+  agregar(id:string){
+    this.mostrar = true
+    const captura = this.products.find(pro => pro.id === id)
+    this.producto.push(captura)
+    console.log(this.producto)
   }
 }

@@ -2,8 +2,6 @@
 
 <h1>productos</h1>
 
-<body>
-
   <div class="image">
       <img src="../../../assets/imagenes/imagen.png" alt="">
   </div>
@@ -21,11 +19,14 @@
               <span class="titulo-item">{{p.producto || 'sin nombre'}}</span>
               <img [src]="p.imagen" alt="img" class="img-item">
               <span class="precio-item">${{p.precio}}</span>
-              <button class="boton-item">Agregar al Carrito</button>
+              <button (click)="agregar(p.id)" class="boton-item">Agregar al Carrito</button>
           </div>
       </div>
-      <!-- Carrito de Compras -->
-      <div class="carrito" id="carrito">
+  </section>
+
+        <!-- Carrito de Compras -->
+      <div style="top: 128%;
+    left: 29%;" *ngIf="mostrar" class="carrito" id="carrito">
           <div class="header-carrito">
               <h2>Tu Carrito</h2>
           </div>
@@ -44,6 +45,3 @@
               <button class="btn-pagar">Pagar <i class="fa-solid fa-bag-shopping"></i> </button>
           </div>
       </div>
-  </section>
-
-</body>
