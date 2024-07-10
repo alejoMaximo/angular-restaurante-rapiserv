@@ -8,16 +8,14 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class MenuComponent implements OnInit {
   products: any[] = [];
-  mostrar: boolean = false
-  producto: any[] = []
-  count = 1
-  habilitar = true
-  subtotal = 0
+  mostrar: boolean = false;
+  carrito: any[] = [];
+  subtotal = 0;
 
   constructor(private _prod: ProductsService) {}
 
   ngOnInit(): void {
-    this.getProducts()
+    this.getProducts();
   }
 
   getProducts() {
@@ -29,28 +27,54 @@ export class MenuComponent implements OnInit {
           ...element.payload.doc.data(),
         });
       });
-      console.log(this.products)
+      console.log(this.products);
     });
   }
-  agregar(id:string){
-    this.mostrar = true
-    const captura = this.products.find(pro => pro.id === id)
-    this.producto.push(captura)
-    this.subtotal += captura.precio;
+
+  agregar(id: string) {
+    this.mostrar = true;
+    const producto = this.products.find((pro) => pro.id === id);
+    const productoEnCarrito = this.carrito.find((pro) => pro.id === id);
+
+    if (productoEnCarrito) {
+      productoEnCarrito.cantidad++;
+    } else {
+      this.carrito.push({ ...producto, cantidad: 1 });
+    }
+
+    this.calcularSubtotal();
   }
-  cerrar(){
-    this.mostrar = false
+
+  cerrar() {
+    this.mostrar = false;
   }
-  reducir(){
-    if (this.count > 1) {
-      this.count --
-      this.subtotal -= this.producto[0].precio;
-      this.habilitar = this.count === 1;
+
+  reducir(id: string) {
+    const productoEnCarrito = this.carrito.find((pro) => pro.id === id);
+
+    if (productoEnCarrito && productoEnCarrito.cantidad > 1) {
+      productoEnCarrito.cantidad--;
+      this.calcularSubtotal();
     }
   }
-  aumentar(){
-    this.count ++
-    this.subtotal += this.producto[0].precio;
-    this.habilitar = false
+
+  aumentar(id: string) {
+    const productoEnCarrito = this.carrito.find((pro) => pro.id === id);
+
+    if (productoEnCarrito) {
+      productoEnCarrito.cantidad++;
+      this.calcularSubtotal();
+    }
+  }
+
+  calcularSubtotal() {
+    this.subtotal = this.carrito.reduce(
+      (acc, producto) => acc + producto.precio * producto.cantidad,
+      0
+    );
+  }
+  eliminar(id: string) {
+    this.carrito = this.carrito.filter((pro) => pro.id !== id);
+    this.calcularSubtotal();
   }
 }

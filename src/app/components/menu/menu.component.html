@@ -31,7 +31,7 @@
     <span style="cursor: pointer;" (click)="cerrar()" class="boto">X </span>
   </div>
 
-  <div style="background-color: aquamarine;" *ngFor="let pd of producto">
+  <div style="background-color: aquamarine;" *ngFor="let pd of carrito">
     <img width="100" [src]="pd.imagen" alt="">
     <div class="pd">
       <span>Nombre: </span>
@@ -42,22 +42,20 @@
       <span>{{pd.precio}}</span>
     </div>
 
-    <button [disabled]="habilitar" (click)="reducir()" style="border-radius: 50%;
-    padding: 9px;">-</button>
-    <span>{{count}}</span>
-    <button (click)="aumentar()" style="border-radius: 50%;
-    padding: 9px;">+</button>
+    <button (click)="reducir(pd.id)" style="border-radius: 50%; padding: 9px;">-</button>
+    <span>{{pd.cantidad}}</span>
+    <button (click)="aumentar(pd.id)" style="border-radius: 50%; padding: 9px;">+</button>
+    <button (click)="eliminar(pd.id)" style="border-radius: 50%; padding: 9px; background-color: red; color: white;">Eliminar</button>
     <div>
       <span>Subtotal: </span>
-      <span>{{subtotal}}</span>
+      <span>{{pd.precio * pd.cantidad}}</span>
     </div>
   </div>
 
-  <div class="carrito-items"></div>
   <div class="carrito-total">
     <div class="fila">
       <strong>Tu Total</strong>
-      <span class="carrito-precio-total"> $120.000,00 </span>
+      <span class="carrito-precio-total"> ${{subtotal}}</span>
     </div>
     <button class="btn-pagar">
       Pagar <i class="fa-solid fa-bag-shopping"></i>
