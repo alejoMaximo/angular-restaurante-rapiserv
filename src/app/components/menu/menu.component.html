@@ -28,16 +28,16 @@
 <div style="top: 128%; left: 29%" *ngIf="mostrar" class="carrito" id="carrito">
   <div class="header-carrito">
     <h2>Tu Carrito</h2>
-    <span style="cursor: pointer;" (click)="cerrar()">X</span>
+    <span style="cursor: pointer;" (click)="cerrar()" class="boto">X </span>
   </div>
 
   <div style="background-color: aquamarine;" *ngFor="let pd of producto">
     <img width="100" [src]="pd.imagen" alt="">
-    <div>
+    <div class="pd">
       <span>Nombre: </span>
       <span>{{pd.producto}}</span>
     </div>
-    <div>
+    <div class="pd">
       <span>Precio: </span>
       <span>{{pd.precio}}</span>
     </div>
