@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { CommonModule } from '@angular/common';
 
 //modulo ng
 import { FormsModule } from '@angular/forms';
@@ -18,6 +19,8 @@ import { LoginComponent } from './components/login/login.component';
 import { RegistroComponent } from './components/registro/registro.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { InfoVentasComponent } from './components/info-ventas/info-ventas.component';
+
 
 @NgModule({
   declarations: [
@@ -27,9 +30,11 @@ import { NavbarComponent } from './components/navbar/navbar.component';
     RegistroComponent,
     MenuComponent,
     NavbarComponent,
+    InfoVentasComponent,
   ],
   imports: [
     BrowserModule,
+    CommonModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,

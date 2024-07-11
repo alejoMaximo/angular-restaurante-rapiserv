@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductsService } from 'src/app/services/products.service';
+import { RegistrarService } from 'src/app/services/registrar.service';
 
 @Component({
   selector: 'app-menu',
@@ -11,8 +12,11 @@ export class MenuComponent implements OnInit {
   mostrar: boolean = false;
   carrito: any[] = [];
   subtotal = 0;
+  modal = false;
+  cancelado = 0;
+  devolver = 0;
 
-  constructor(private _prod: ProductsService) {}
+  constructor(private _prod: ProductsService, private _reg: RegistrarService) {}
 
   ngOnInit(): void {
     this.getProducts();
@@ -27,7 +31,6 @@ export class MenuComponent implements OnInit {
           ...element.payload.doc.data(),
         });
       });
-      console.log(this.products);
     });
   }
 
@@ -47,6 +50,9 @@ export class MenuComponent implements OnInit {
 
   cerrar() {
     this.mostrar = false;
+  }
+  cerrar2() {
+    this.modal = false;
   }
 
   reducir(id: string) {
@@ -76,5 +82,44 @@ export class MenuComponent implements OnInit {
   eliminar(id: string) {
     this.carrito = this.carrito.filter((pro) => pro.id !== id);
     this.calcularSubtotal();
+  }
+  pagar() {
+    this.modal = true;
+  }
+  actualizarDevolucion() {
+    if (this.cancelado < this.subtotal) {
+      this.devolver = 0;
+    } else {
+      this.devolver = this.cancelado - this.subtotal;
+    }
+  }
+  registrar() {
+    const productosParaFirebase = this.carrito.map((producto) => ({
+      nombre: producto.producto,
+      cantidad: producto.cantidad,
+      subtotal: producto.precio * producto.cantidad,
+    }));
+
+
+    const data = {
+      productos: productosParaFirebase,
+      registro: this.subtotal,
+      timestamp: new Date(),
+    };
+
+
+    this._reg.agregarRegistro(data).then(() => {
+      this.carrito = [];
+      this.modal = false;
+      this.mostrar = false;
+      console.log('Se ha registrado el pedido correctamente');
+    });
+  }
+  obtenerDetallesProductos() {
+    return this.carrito.map((producto) => ({
+      nombre: producto.producto,
+      cantidad: producto.cantidad,
+      subtotal: producto.precio * producto.cantidad,
+    }));
   }
 }

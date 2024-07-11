@@ -28,37 +28,60 @@
 <div style="top: 128%; left: 29%" *ngIf="mostrar" class="carrito" id="carrito">
   <div class="header-carrito">
     <h2>Tu Carrito</h2>
-    <span style="cursor: pointer;" (click)="cerrar()" class="boto">X </span>
+    <span style="cursor: pointer" (click)="cerrar()" class="boto">X </span>
   </div>
 
-  <div style="background-color: aquamarine;" *ngFor="let pd of carrito">
-    <img width="100" [src]="pd.imagen" alt="">
+  <div style="background-color: aquamarine" *ngFor="let pd of carrito">
+    <img width="100" [src]="pd.imagen" alt="" />
     <div class="pd">
       <span>Nombre: </span>
-      <span>{{pd.producto}}</span>
+      <span>{{ pd.producto }}</span>
     </div>
     <div class="pd">
       <span>Precio: </span>
-      <span>{{pd.precio}}</span>
+      <span>{{ pd.precio }}</span>
     </div>
 
-    <button (click)="reducir(pd.id)" style="border-radius: 50%; padding: 9px;">-</button>
-    <span>{{pd.cantidad}}</span>
-    <button (click)="aumentar(pd.id)" style="border-radius: 50%; padding: 9px;">+</button>
-    <button (click)="eliminar(pd.id)" style="border-radius: 50%; padding: 9px; background-color: red; color: white;">Eliminar</button>
+    <button (click)="reducir(pd.id)" style="border-radius: 50%; padding: 9px">
+      -
+    </button>
+    <span>{{ pd.cantidad }}</span>
+    <button (click)="aumentar(pd.id)" style="border-radius: 50%; padding: 9px">
+      +
+    </button>
+    <button
+      (click)="eliminar(pd.id)"
+      style="
+        border-radius: 50%;
+        padding: 9px;
+        background-color: red;
+        color: white;
+      "
+    >
+      Eliminar
+    </button>
     <div>
       <span>Subtotal: </span>
-      <span>{{pd.precio * pd.cantidad}}</span>
+      <span>{{ pd.precio * pd.cantidad }}</span>
     </div>
   </div>
 
   <div class="carrito-total">
     <div class="fila">
       <strong>Tu Total</strong>
-      <span class="carrito-precio-total"> ${{subtotal}}</span>
+      <span class="carrito-precio-total"> ${{ subtotal }}</span>
     </div>
-    <button class="btn-pagar">
+    <button (click)="pagar()" class="btn-pagar">
       Pagar <i class="fa-solid fa-bag-shopping"></i>
     </button>
   </div>
+</div>
+<div style="position: absolute; top: 119%; left: 31%" *ngIf="modal" class="pagar">
+  <span style="cursor: pointer;" (click)="cerrar2()">X</span>
+  <h2>Total a pagar</h2>
+  <span>{{subtotal}}</span>
+  <h2>Paga con:</h2>
+  <input name="cancelado" type="number" [(ngModel)]="cancelado" (input)="actualizarDevolucion()" />
+  <h2>Total a devolver: {{devolver}}</h2>
+  <button (click)="registrar()">Registrar</button>
 </div>
