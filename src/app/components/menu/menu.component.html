@@ -28,7 +28,7 @@
 <div style="top: 128%; left: 29%" *ngIf="mostrar" class="carrito" id="carrito">
   <div class="header-carrito">
     <h2>Tu Carrito</h2>
-    <span style="cursor: pointer" (click)="cerrar()" class="boto">X </span>
+    <span style="cursor: pointer" (click)="cerrar()" class="boto"><i class="fas fa-times"></i> </span>
   </div>
 
   <div style="background-color: aquamarine" *ngFor="let pd of carrito">
@@ -58,7 +58,7 @@
         color: white;
       "
     >
-      Eliminar
+    <i class="fas fa-trash"></i>
     </button>
     <div>
       <span>Subtotal: </span>
@@ -77,11 +77,11 @@
   </div>
 </div>
 <div style="position: absolute; top: 119%; left: 31%" *ngIf="modal" class="pagar">
-  <span style="cursor: pointer;" (click)="cerrar2()">X</span>
+  <span class="cerrar2"  (click)="cerrar2()"><i class="fas fa-times"></i></span>
   <h2>Total a pagar</h2>
   <span>{{subtotal}}</span>
   <h2>Paga con:</h2>
-  <input name="cancelado" type="number" [(ngModel)]="cancelado" (input)="actualizarDevolucion()" />
+  <input name="cancelado" type="number" [(ngModel)]="cancelado" (input)="actualizarDevolucion()"  />
   <h2>Total a devolver: {{devolver}}</h2>
-  <button (click)="registrar()">Registrar</button>
+  <button class="Registrar" (click)="registrar()">Registrar</button>
 </div>

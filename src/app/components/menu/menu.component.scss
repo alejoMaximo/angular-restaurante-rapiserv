@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600&family=Titillium+Web:wght@200;300;400;600;700&display=swap");
+@import '~@fortawesome/fontawesome-free/css/all.min.css';
 * {
   margin: 0;
   padding: 0;
@@ -266,18 +267,45 @@ h1 {
     color: #e90e0e;
     font-size: 20px;
     width: 40px;
-    height: 40px;
+
     line-height: 40px;
-    text-align: center;
+   
     border-radius: 50%;
     border: 1px solid #000;
     cursor: pointer;
     display: block;
     background: transparent;
-    z-index: 20;
+    
 }
+
+///estilo de la ventana de pagar o registrar///
 .pagar {
-  background-color: burlywood;
+  background-color: aquamarine;
   width: 400px;
   height: 500px;
 }
+
+.cerrar2{
+  cursor: pointer;
+  border-radius: 50%;
+    padding: 9px;
+    background-color: red;
+    color: white;
+    display: inline-flex;
+}
+
+h2{
+  text-align: center;
+}
+
+.Registrar{
+  display: block;
+  margin: 10px auto;
+  border: none;
+  background-color: #1197f0;
+  color: #fff;
+  padding: 5px 15px;
+  border-radius: 5px;
+}
+
+
