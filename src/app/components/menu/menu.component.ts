@@ -16,6 +16,16 @@ export class MenuComponent implements OnInit {
   cancelado = 0;
   devolver = 0;
 
+  colors = [
+    '#7fb6ff',
+    '#ff7f7f',
+    '#7fff7f',
+    '#ffff7f',
+    '#7fffff',
+    '#ff7fff',
+    '#ff7f7f',
+  ];
+
   constructor(private _prod: ProductsService, private _reg: RegistrarService) {}
 
   ngOnInit(): void {
@@ -100,13 +110,11 @@ export class MenuComponent implements OnInit {
       subtotal: producto.precio * producto.cantidad,
     }));
 
-
     const data = {
       productos: productosParaFirebase,
       registro: this.subtotal,
       timestamp: new Date(),
     };
-
 
     this._reg.agregarRegistro(data).then(() => {
       this.carrito = [];
