@@ -8,7 +8,7 @@
 
 <div>
   <button routerLink="/inicio" class="volver">volver</button>
-  <button routerLink="/create-product" class="volver">
+  <button [hidden]="habilitar" routerLink="/create-product" class="volver">
     Agregar nuevo producto
   </button>
 </div>
@@ -18,13 +18,16 @@
     <!-- Contenedor de elementos -->
     <div *ngFor="let p of products" class="contenedor-items">
       <div class="item">
-        <div style="margin-bottom: 4px;">
+        <div style="margin-bottom: 4px; display: flex;">
           <span class="titulo-item">{{ p.producto || "sin nombre" }}</span>
-          <i
-          style="cursor: pointer; padding-left: 13px;"
-          class="fas fa-edit fa-lg text-info"
-          [routerLink]="['/edit-product/', p.id]"
-        ></i>
+          <div [hidden]="habilitar">
+            <i
+            style="cursor: pointer; padding-left: 13px;"
+            class="fas fa-edit fa-lg text-info"
+            [routerLink]="['/edit-product/', p.id]"
+          ></i>
+
+          </div>
 
         </div>
 

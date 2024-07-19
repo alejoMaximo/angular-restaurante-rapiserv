@@ -16,9 +16,6 @@ export class CreateProductComponent implements OnInit {
   verificar() {
     throw new Error('Method not implemented.');
   }
-  goBack() {
-    throw new Error('Method not implemented.');
-  }
 
   createProduct: FormGroup;
   subbmited: boolean = false;
@@ -46,10 +43,10 @@ export class CreateProductComponent implements OnInit {
     this.id = this.aRouter.snapshot.paramMap.get('id');
     this.createProduct = this.fb.group({
       producto: ['', Validators.required],
-      // precioCompra: ['', Validators.required],
+      precioCompra: ['', Validators.required],
       precio: ['', Validators.required],
       imagen: [''],
-      // disponible: [{ value: '', disabled: true }, Validators.required],
+      disponible: [{ value: '' }, Validators.required],
       // disponibleTotal: [{ value: '', disabled: true }, Validators.required],
       // cantidadTotal: [''],
       // nuevoSurtido: [''],
@@ -64,16 +61,17 @@ export class CreateProductComponent implements OnInit {
     if (this.id !== null) {
       this.titleChange = 'Editar Producto';
       this._productService.getProducto(this.id).subscribe((data) => {
-        console.log(data.payload.data());
         this.createProduct.setValue({
           producto: data.payload.data()['producto'],
           precio: data.payload.data()['precio'],
           imagen: data.payload.data()['imagen'],
+          precioCompra: data.payload.data()['precioCompra'],
+          disponible: data.payload.data()['disponible'],
         });
         // const { disponible, disponibleTotal } = data.payload.data();
         // this.createProduct.setValue({
         //   producto: data.payload.data()['producto'],
-        //   precioCompra: data.payload.data()['precioCompra'] || null,
+        //
         //
         //   cantidadTotal: data.payload.data()['cantidadTotal'] || null,
         //
@@ -104,6 +102,8 @@ export class CreateProductComponent implements OnInit {
       producto: this.createProduct.value.producto,
       precio: this.createProduct.value.precio,
       imagen: this.createProduct.value.imagen,
+      disponible: this.resultado,
+      precioCompra: this.createProduct.value.precioCompra,
     };
     this._productService.update(id, producto).then(() => {
       this.router.navigate(['/menu']);
@@ -114,9 +114,14 @@ export class CreateProductComponent implements OnInit {
       producto: this.createProduct.value.producto,
       precio: this.createProduct.value.precio,
       imagen: this.createProduct.value.imagen,
+      precioCompra: this.createProduct.value.precioCompra,
+      disponible: this.resultado,
     };
     this._productService.agregarproducto(producto).then(() => {
       this.router.navigate(['/menu']);
     });
+  }
+  goBack() {
+    this.location.back();
   }
 }
