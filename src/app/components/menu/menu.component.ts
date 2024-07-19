@@ -130,4 +130,8 @@ export class MenuComponent implements OnInit {
       subtotal: producto.precio * producto.cantidad,
     }));
   }
+  toggleCarrito() {
+    this.mostrar = !this.mostrar;
+  }
+
 }

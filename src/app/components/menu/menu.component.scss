@@ -109,18 +109,41 @@ h1 {
  }
 /* seccion carrito */
 .carrito {
-  border: 1px solid #666;
-  width: 35%;
-  margin-top: 30px;
-  border-radius: 10px;
-  overflow: hidden;
-  margin-bottom: auto;
   position: fixed;
-  transition: 0.3s;
-  /* Estilos para ocultar */
-  // margin-right: -100%;
-  // opacity: 0;
+  top: 0;
+  right: 0;
+  width: 345px;
+  height: 100%;
+  background: white;
+  transition: transform 0.3s ease-in-out;
+  box-shadow: -2px 0 5px rgba(0, 0, 0, 0.5);
+  overflow-y: auto;
+  z-index: 1000;
 }
+.carrito-oculto {
+  transform: translateX(100%);
+}
+
+.carrito-visible {
+  transform: translateX(0);
+}
+
+.btn-carrito-toggle {
+  position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #009bff;
+    border: 1px solid white;
+    padding: 10px 20px;
+    cursor: pointer;
+    z-index: 1001;
+    border-radius: 5px;
+}
+
+.btn-carrito-toggle:hover {
+  background: #931d1d;
+}
+
 .carrito .header-carrito {
   background-color: #1197f0;
   color: white;

@@ -14,9 +14,18 @@ export class ProductsService {
   //     .snapshotChanges();
   // }
   getProducts(): Observable<any> {
-    return this.firestore
-      .collection('items')
-      .snapshotChanges();
+    return this.firestore.collection('items').snapshotChanges();
   }
-
+  getProducto(id: string): Observable<any> {
+    return this.firestore.collection('items').doc(id).snapshotChanges();
+  }
+  agregarproducto(producto: any): Promise<any> {
+    return this.firestore.collection('items').add(producto);
+  }
+  deleteProducts(id: string): Promise<any> {
+    return this.firestore.collection('items').doc(id).delete();
+  }
+  update(id: string, data: any): Promise<any> {
+    return this.firestore.collection('items').doc(id).update(data);
+  }
 }

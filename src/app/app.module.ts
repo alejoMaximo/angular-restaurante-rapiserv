@@ -20,6 +20,7 @@ import { RegistroComponent } from './components/registro/registro.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { InfoVentasComponent } from './components/info-ventas/info-ventas.component';
+import { CreateProductComponent } from './components/create-product/create-product.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { InfoVentasComponent } from './components/info-ventas/info-ventas.compon
     MenuComponent,
     NavbarComponent,
     InfoVentasComponent,
+    CreateProductComponent,
   ],
   imports: [
     BrowserModule,

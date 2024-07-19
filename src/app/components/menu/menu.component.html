@@ -6,111 +6,138 @@
   <img src="../../../assets/imagenes/imagen.png" alt="" />
 </div>
 
-<button routerLink="/inicio" class="volver">volver</button>
+<div>
+  <button routerLink="/inicio" class="volver">volver</button>
+  <button routerLink="/create-product" class="volver">
+    Agregar nuevo producto
+  </button>
+</div>
 
-<div></div>
+<div>
+  <section class="contenedor">
+    <!-- Contenedor de elementos -->
+    <div *ngFor="let p of products" class="contenedor-items">
+      <div class="item">
+        <div style="margin-bottom: 4px;">
+          <span class="titulo-item">{{ p.producto || "sin nombre" }}</span>
+          <i
+          style="cursor: pointer; padding-left: 13px;"
+          class="fas fa-edit fa-lg text-info"
+          [routerLink]="['/edit-product/', p.id]"
+        ></i>
 
-<section class="contenedor">
-  <!-- Contenedor de elementos -->
-  <div *ngFor="let p of products" class="contenedor-items">
-    <div class="item">
-      <span class="titulo-item">{{ p.producto || "sin nombre" }}</span>
-      <img [src]="p.imagen" alt="img" class="img-item" />
-      <span class="precio-item">${{ p.precio }}</span>
-      <button (click)="agregar(p.id)" class="boton-item">
-        Agregar al Carrito
-      </button>
+        </div>
+
+        <img [src]="p.imagen" alt="img" class="img-item" />
+        <span class="precio-item">${{ p.precio }}</span>
+        <button (click)="agregar(p.id)" class="boton-item">
+          Agregar al Carrito
+        </button>
+      </div>
     </div>
-  </div>
-</section>
-
-<!-- Carrito de Compras -->
-<div style="top: 20%; left: 30%" *ngIf="mostrar" class="carrito" id="carrito">
-  <div class="header-carrito">
-    <h2>Tu Carrito</h2>
-    <span style="cursor: pointer" (click)="cerrar()" class="boto"
-      ><i class="fas fa-times"></i>
-    </span>
-  </div>
+  </section>
+  <!-- Botón para abrir/cerrar carrito -->
+  <button (click)="toggleCarrito()" class="btn-carrito-toggle">
+    <i style="color: white" class="fas fa-shopping-cart"></i>
+  </button>
+  <!-- Carrito de Compras -->
   <div
-    style="
-      background-color: aliceblue;
-      display: flex;
-      gap: 4px;
-      overflow-x: auto;
-      width: 100%;
-    "
+    [ngClass]="{ 'carrito-oculto': !mostrar, 'carrito-visible': mostrar }"
+    class="carrito"
+    id="carrito"
   >
+    <div class="header-carrito">
+      <h2>Tu Carrito</h2>
+    </div>
     <div
-      style="text-align: center; padding: 10px; border: 1px solid gray"
-      [style.background-color]="colors[i % colors.length]"
-      *ngFor="let pd of carrito; let i = index"
+      style="
+        background-color: aliceblue;
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        width: 100%;
+      "
     >
-      <img width="100" height="100" [src]="pd.imagen" alt="" />
-      <div class="pd">
-        <span>Nombre: </span>
-        <span>{{ pd.producto || "sin nombre" }}</span>
-      </div>
-      <div class="pd">
-        <span>Precio: </span>
-        <span>{{ pd.precio }}</span>
-      </div>
-
-      <button (click)="reducir(pd.id)" style="border-radius: 50%; padding: 9px">
-        -
-      </button>
-      <span>{{ pd.cantidad }}</span>
-      <button
-        (click)="aumentar(pd.id)"
-        style="border-radius: 50%; padding: 9px"
+      <div
+        style="text-align: center; padding: 10px; border: 1px solid gray"
+        [style.background-color]="colors[i % colors.length]"
+        *ngFor="let pd of carrito; let i = index"
       >
-        +
-      </button>
-      <button
-        (click)="eliminar(pd.id)"
-        style="
-          border-radius: 50%;
-          padding: 9px;
-          background-color: red;
-          color: white;
-        "
-      >
-        <i class="fas fa-trash"></i>
-      </button>
-      <div>
-        <span>Subtotal: </span>
-        <span>{{ pd.precio * pd.cantidad }}</span>
+        <img width="100" height="100" [src]="pd.imagen" alt="" />
+        <div class="pd">
+          <span>Nombre: </span>
+          <span>{{ pd.producto || "sin nombre" }}</span>
+        </div>
+        <div class="pd">
+          <span>Precio: </span>
+          <span>{{ pd.precio }}</span>
+        </div>
+        <button
+          (click)="reducir(pd.id)"
+          style="border-radius: 50%; padding: 9px"
+        >
+          -
+        </button>
+        <span>{{ pd.cantidad }}</span>
+        <button
+          (click)="aumentar(pd.id)"
+          style="border-radius: 50%; padding: 9px"
+        >
+          +
+        </button>
+        <button
+          (click)="eliminar(pd.id)"
+          style="
+            border-radius: 50%;
+            padding: 9px;
+            background-color: red;
+            color: white;
+          "
+        >
+          <i class="fas fa-trash"></i>
+        </button>
+        <div>
+          <span>Subtotal: </span>
+          <span>{{ pd.precio * pd.cantidad }}</span>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="carrito-total">
-    <div class="fila">
-      <strong>Tu Total</strong>
-      <span class="carrito-precio-total"> ${{ subtotal }}</span>
+    <div class="carrito-total">
+      <div class="fila">
+        <strong>Tu Total</strong>
+        <span class="carrito-precio-total"> ${{ subtotal }}</span>
+      </div>
+      <button (click)="pagar()" class="btn-pagar">
+        Pagar <i class="fa-solid fa-bag-shopping"></i>
+      </button>
     </div>
-    <button (click)="pagar()" class="btn-pagar">
-      Pagar <i class="fa-solid fa-bag-shopping"></i>
-    </button>
   </div>
 </div>
+
 <div
-  style="position: fixed;
+  style="
+    position: fixed;
     top: 24%;
     left: 30%;
     padding: 15px;
-    border-radius: 13px; text-align: center;"
+    border-radius: 13px;
+    text-align: center;
+  "
   *ngIf="modal"
   class="pagar"
 >
   <span class="cerrar2" (click)="cerrar2()"><i class="fas fa-times"></i></span>
-  <h2 style="margin-top: 24px;">Total a pagar</h2>
-  <span style="font-size: xx-large;">${{ subtotal }}</span>
-  <h2 style="margin-top: 36px;">Paga con:</h2>
+  <h2 style="margin-top: 24px">Total a pagar</h2>
+  <span style="font-size: xx-large">${{ subtotal }}</span>
+  <h2 style="margin-top: 36px">Paga con:</h2>
   <input
-  style="width: 92%;
-    text-align: center;
-    padding: 15px;
-    border-radius: 13px; font-size: large;"
+    style="
+      width: 92%;
+      text-align: center;
+      padding: 15px;
+      border-radius: 13px;
+      font-size: large;
+    "
     name="cancelado"
     type="number"
     [(ngModel)]="cancelado"

@@ -1,0 +1,19 @@
+.form{
+  border-radius: 11px;
+    padding: 18px 26px;
+    border: 1px solid gray;
+    text-align: center;
+    display: table-caption;
+}
+.container-form{
+  display: flex;
+    flex-direction: column;
+    row-gap: 9px;
+}
+.form-control {
+      text-align: center;
+    width: 200px;
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid gray
+}
