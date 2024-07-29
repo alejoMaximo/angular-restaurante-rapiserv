@@ -5,12 +5,12 @@ h2{
   border-bottom:1px solid rgba(0,0,0,1);
   position:relative;
   }
-  
+
   .image{
     text-align: center;
   }
-  
-  
+
+
   div{
     margin: 0%;
     padding: 0%;
@@ -18,55 +18,58 @@ h2{
     background-color: rgb(221, 214, 214);
   }
 
-  .form-group{
-    margin-left: 20px;
+.form-group {
+  margin-left: 20px;
   margin-right: 20px;
   margin-bottom: 10px;
-  height: 40px;
+  height: auto; /* Cambiado para permitir que los elementos dentro crezcan */
   border-bottom-width: 1px;
- 
-  }
+  position: relative; /* Asegura que el span se posicione correctamente */
+}
+.errorLabel {
+  color: red; /* Hacer el texto rojo para resaltar los errores */
+  font-size: 0.875rem; /* Tamaño de fuente más pequeño para errores */
+  margin-top: 5px; /* Espacio entre el campo de entrada y el mensaje de error */
+  display: block; /* Asegura que el span se muestre como un bloque */
+}
 
-  .submit-button{
-    padding:5px 20px;
-    border:1px solid rgba(0,0,0,0.4);
-    text-shadow:0 -1px 0 rgba(0,0,0,0.4);
-    box-shadow:
-      inset 0 1px 0 rgba(255,255,255,0.3),
-      inset 0 10px 10px rgba(255,255,255,0.1);
-    border-radius:0.3em;
-    background:#0184ff;
-    color:white;
-    float:right;
-    font-weight:bold;
-    cursor:pointer;
-    font-size:13px;
-  }
+.submit-button {
+  padding: 5px 20px;
+  border: 1px solid rgba(0, 0, 0, 0.4);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.4);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3),
+              inset 0 10px 10px rgba(255, 255, 255, 0.1);
+  border-radius: 0.3em;
+  background: #0184ff;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 13px;
+  display: block; /* Asegura que el botón sea un bloque */
+  margin: 20px auto; /* Centra el botón horizontalmente */
+}
 
-  .container-login{
-    font-family: "HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,"Lucida Grande",sans-serif;
-  color:rgb(74, 12, 189);
-  font-size:17px;
+.container-login {
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  color: rgb(74, 12, 189);
+  font-size: 17px;
   text-align: center;
-  
+  background: #939197;
+  width: 500px;
+  margin: 50px auto;
+  border-radius: 0.4em;
+  border: 1px solid #191919;
+  overflow: hidden;
+  position: relative;
+}
 
-  background:#939197; 
- width:500px;
- margin:50px auto;
- border-radius:0.4em;
- border:1px solid #191919;
- overflow:hidden;
- position:relative;
- 
-  }
 
-  .log{
-    width:80%;
- padding:8px 5px;
- background:linear-gradient(#d4ddeb, #35517c);
- border:1px solid #04079e;
- box-shadow:
-   0 1px 0 rgba(227, 229, 231, 0.281);
- border-radius:0.3em;
- margin-bottom:20px;
+ .log {
+  width: 80%;
+  padding: 8px 5px;
+  background: linear-gradient(#d4ddeb, #35517c);
+  border: 1px solid #04079e;
+  box-shadow: 0 1px 0 rgba(227, 229, 231, 0.281);
+  border-radius: 0.3em;
+  margin-bottom: 10px; /* Reducido para ajustar el espacio con el error */
 }

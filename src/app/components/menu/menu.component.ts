@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { ToastrService } from 'ngx-toastr';
 import { ProductsService } from 'src/app/services/products.service';
 import { RegistrarService } from 'src/app/services/registrar.service';
 
@@ -17,7 +18,7 @@ export class MenuComponent implements OnInit {
   cancelado = 0;
   devolver = 0;
 
-  habilitar = true
+  habilitar = true;
 
   colors = [
     '#7fb6ff',
@@ -32,14 +33,18 @@ export class MenuComponent implements OnInit {
   constructor(
     private _prod: ProductsService,
     private _reg: RegistrarService,
-    private afAuth: AngularFireAuth
+    private afAuth: AngularFireAuth,
+    private toastr: ToastrService
   ) {}
 
   ngOnInit(): void {
     this.afAuth.currentUser.then((data) => {
-      const email = data?.email
-      if (email == 'edwinkaycut@gmail.com' || email == 'alejomaximo1990@gmail.com') {
-        this.habilitar = false
+      const email = data?.email;
+      if (
+        email == 'edwinkaycut@gmail.com' ||
+        email == 'alejomaximo1990@gmail.com'
+      ) {
+        this.habilitar = false;
       }
     });
     this.getProducts();
@@ -133,7 +138,7 @@ export class MenuComponent implements OnInit {
       this.carrito = [];
       this.modal = false;
       this.mostrar = false;
-      console.log('Se ha registrado el pedido correctamente');
+      this.toastr.success('El producto fue registrado correctamente');
     });
   }
   obtenerDetallesProductos() {

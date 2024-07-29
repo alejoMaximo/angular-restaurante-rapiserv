@@ -110,7 +110,7 @@
         <strong>Tu Total</strong>
         <span class="carrito-precio-total"> ${{ subtotal }}</span>
       </div>
-      <button (click)="pagar()" class="btn-pagar">
+      <button style="cursor: pointer" (click)="pagar()" class="btn-pagar">
         Pagar <i class="fa-solid fa-bag-shopping"></i>
       </button>
     </div>
@@ -147,5 +147,5 @@
     (input)="actualizarDevolucion()"
   />
   <h2>Total a devolver: {{ devolver }}</h2>
-  <button class="Registrar" (click)="registrar()">Registrar</button>
+  <button style="cursor: pointer"  class="Registrar" (click)="registrar()">Registrar</button>
 </div>

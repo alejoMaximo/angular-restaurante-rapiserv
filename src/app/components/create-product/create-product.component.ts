@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductsService } from 'src/app/services/products.service';
 import { Location } from '@angular/common';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-create-product',
@@ -38,7 +39,8 @@ export class CreateProductComponent implements OnInit {
     private _productService: ProductsService,
     private fb: FormBuilder,
     private router: Router,
-    private aRouter: ActivatedRoute
+    private aRouter: ActivatedRoute,
+    private toastr: ToastrService
   ) {
     this.id = this.aRouter.snapshot.paramMap.get('id');
     this.createProduct = this.fb.group({
@@ -107,6 +109,7 @@ export class CreateProductComponent implements OnInit {
     };
     this._productService.update(id, producto).then(() => {
       this.router.navigate(['/menu']);
+      this.toastr.info('Producto actualizado correctamente');
     });
   }
   agregarProducto() {
@@ -119,6 +122,7 @@ export class CreateProductComponent implements OnInit {
     };
     this._productService.agregarproducto(producto).then(() => {
       this.router.navigate(['/menu']);
+      this.toastr.success('Nuevo producto agregado');
     });
   }
   goBack() {
