@@ -42,6 +42,7 @@ export class CreateProductComponent implements OnInit {
     private aRouter: ActivatedRoute,
     private toastr: ToastrService
   ) {
+    //capturo el id
     this.id = this.aRouter.snapshot.paramMap.get('id');
     this.createProduct = this.fb.group({
       producto: ['', Validators.required],
@@ -60,6 +61,7 @@ export class CreateProductComponent implements OnInit {
   }
 
   EXeditProducto() {
+    //aqui edito o agrego
     if (this.id !== null) {
       this.titleChange = 'Editar Producto';
       this._productService.getProducto(this.id).subscribe((data) => {
